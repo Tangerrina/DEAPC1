@@ -13,8 +13,10 @@ Ator |Cliente
 Código|             Nome              |                    Descrição                      |            Piroridade
   CL01    Aceder à lista de produtos      Como Cliente quero aceder à lista dos produtos                  Alta
                                             para saber que produtos existem na loja
+  CL02        Compra de Bilhetes          Como Cliente quero comprar um bilhete para                      Alta
+                                                      participar num evento
 
 Ator | Admin
 Código|             Nome                 |                    Descrição                          |            Piroridade
-AD01    Administrar a lista de produtos     Como Admin vai administrar, analisar e corrigir                   Intermédia
+AD01    Administrar a lista de produtos     Como Admin vai administrar, analisar e corrigir                     Alta
                                                     qualquer erro na lista de produtos  
