@@ -1,0 +1,17 @@
+/*seletores de atributos*/
+h1 {text-align:center;}
+h2,h3 {color:red; font-family:Arial, Helvetica, sans-serif;}
+
+/*seletores de atributos baseados em classes*/
+div.divp{background-color: yellow; border:3px solid black; width: 500px;   
+  height: 500px;}
+div.div1{background-color: rgb(255, 0, 212); border:3px solid rgb(0, 0, 0);}
+div.div2{background-color: rgb(170, 206, 182); border:3px solid rgb(0, 0, 0);}
+
+/*h3.sombra{background-color: gray; color:blue; font-size:20.0pt;}
+     
+div.contatos{display:none; color:magenta;}
+.link {
+  color:blue;
+  text-decoration:underline;
+  cursor:pointer;}*/

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<title>CLIENTE</title>
+<head>
+    <h1>Lado Cliente</h1>
+<!--CSS-->
+<link rel="stylesheet" type="text/css" href="../styles/index_w1.css">
+
+<!--JavaScript-->
+<script type="text/JavaScript" src="index_w1.js"></script> 
+
+</head>
+
+<body>
+<div>
+<form class="sombra" name="myform" method="get" action="exp.php" >
+    <p></p>
+    <h2>Formulário:</h2><br>
+    <h3>Nome + idade</h3><br>
+    <input type="text" name="nome" id="nome" size="10">+
+    <input type="text" name="idade" id="idade" size=5 size="10">
+    <input type="submit" value="Enviar..." onclick="return valida()"></form>
+
+<!--Imprime texto se a função de validação é chamada!-->
+<p id="place"></p>
+
+<p></p>
+<a href="other.html">Para acederes a outra página</a>
+<p></p>
+<a href="other.html" img="" >
+   <img src="../imagens/apple.jpeg" height="128" width="128"> 
+</a>
+<p></p>
+<h2 class="sombra">Eu sou formatado por h2</h2>
+<br>
+<h3>Eu também sou formatado por h3</h3>
+<p></p>
+<h3 class="sombra">Outras coisas mais...</h3>
+
+<b>Clicar em</b>
+<a class="link" onclick="controla_div_by_link()" id="mylink"><b><ins></u>Contatos:</ins></b></a>
+<b>ou na checkbox</b>
+<input type="checkbox" name="check1" id="check1" onclick="controla_div_by_checkbox()">
+<b>ou, então, no radio button</b>
+<input type="radio" name="check2" id="check2" onclick="controla_div_by_radio()">
+
+    <div class="contatos" id="target">
+        <b>Fernando Carvalho</b><br>
+        <b><i>fjc@isep.ipp.pt</i></b>
+    </div>
+
+</div>
+<div style="margin-top:10vh">
+  <h2>Outras Ligações</h2>
+  <a href="classes.html"><h3 style="color:blue">Classes</h3></a> 
+  <a href="posiciona_elementos.html"><h3 style="color:blue">Posição de Elementos</h3></a>
+  <a href="responsividade1.html"><h3 style="color:blue">Responsividade1</h3></a>
+  <a href="responsividade2.html"><h3 style="color:blue">Responsividade2</h3></a>
+  <a href="toggle_div.html"><h3 style="color:blue">Alterna Divisões Usando HTML e CSS</h3></a>
+</div>
+
+</body>
+<address>
+</address>
+</html>

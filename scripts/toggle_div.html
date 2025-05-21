@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Página</title>
+<meta charset="utf-8">
+<style>
+
+div.Z {
+    height: 50vh;
+    width:  50vw;
+    background-color: yellow;
+    border-style: solid;
+    border-color: red;
+    border-width: 6px;
+    position: relative;
+    top: 2vh;
+    bottom: 0;
+    left:2vw;
+    right: 0;
+}
+
+div.Z1 {
+    background-color: greenyellow;
+    width: 50%;
+    height: 50%;
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+div.Z2 {
+    background-color: rgb(206, 116, 202);
+    float: left;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    display: none;
+}
+
+input.trigger:checked + div.Z2 {
+    display: block;}
+
+.format{position:relative; top: 50%; left: 0%;}
+
+</style>
+</head>
+<body>
+    <div class="Z">
+
+        <div class="Z1">
+            <form type="text" name="login" size="10" method="post">
+                <b>Login:</b> 
+                <input type="text" name="login" size="10">
+                <br>
+                <b>Password:</b> 
+                <input type="password" name="password" size="10">
+                <br>
+                <input type="submit" value="Send..." size="10"><br>
+            </form>
+        </div>
+
+        
+        <h4 class="format">Faça check para registar</h4>
+        <input class="trigger format" type="checkbox" name="trigger_">
+        
+
+        <div class="Z2">
+            <form type="text" name="login" size="10" method="post">
+                <b>Login:</b> 
+                <input type="text" name="login" size="10">
+                <br>
+                <b>Type Password:</b> 
+                <input type="password" name="password1" size="10">
+                <br>
+                <b>ReType Password:</b> 
+                <input type="password" name="password2" size="10">
+                <br>
+                <input type="submit" value="Send..." size="10">
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
