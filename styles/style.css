@@ -1,0 +1,72 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #003366;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Navegação com seletor combinado */
+header nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Pseudo-classe */
+header nav a:hover {
+  text-decoration: underline;
+  color: #ffcc00;
+}
+
+/* Conteúdo principal */
+main {
+  padding: 2rem;
+  background-color: white;
+  margin: 1rem;
+  border-radius: 8px;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #003366;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Classe personalizada */
+.highlight {
+  background-color: #ffefc1;
+  padding: 0.5rem;
+  border-left: 4px solid #ffcc00;
+}
+
+/* Pseudo-elemento */
+h1::after {
+  content: " 🎫";
+}
+
+/* Responsividade */
+@media screen and (max-width: 600px) {
+  nav a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  main {
+    margin: 0;
+    border-radius: 0;
+  }
+}
