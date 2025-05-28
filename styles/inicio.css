@@ -32,8 +32,9 @@ header {
         .auth-links {
             display: flex;
             gap: 20px;
-            margin-left: 1500px;
+            
             margin-right: auto;
+            float : right;
             }
 
         .auth-links a {
