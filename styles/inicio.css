@@ -32,7 +32,7 @@ header {
         .auth-links {
             display: flex;
             gap: 20px;/* espaçamento entre Login e Sign Up */
-            margin-left: 15cd00px;
+            margin-left: 1500px;
             }
 
         .auth-links a {
