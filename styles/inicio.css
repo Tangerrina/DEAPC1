@@ -26,12 +26,12 @@ header {
             font-size: 24px;
             font-weight: bold;
             color: #ff8080;
-            margin-left: 10px; /* adiciona espaço entre imagem e texto */
+            margin-left: 10px; /
             }
 
         .auth-links {
             display: flex;
-            gap: 20px;/* espaçamento entre Login e Sign Up */
+            gap: 20px;
             margin-left: 1500px;
             }
 
