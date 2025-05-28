@@ -7,13 +7,13 @@ padding: 0;
 text-align: center;
  }
 header {
- background-color: white;
-padding: 10px 20px;
-border-bottom: 5px solid #ec6f1a;
-display: flex;
-align-items: center;
- justify-content: space-between;
- }
+  background-color: white;
+  padding: 10px 20px;
+  border-bottom: 5px solid #ec6f1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .logo-container {
     display: flex;
             align-items: center;
@@ -26,22 +26,33 @@ align-items: center;
             font-size: 24px;
             font-weight: bold;
             color: #ff8080;
-        }
+            margin-left: 10px; /* adiciona espaço entre imagem e texto */
+            }
+
         .auth-links {
+            display: flex;
+            gap: 20px;/* espaçamento entre Login e Sign Up */
+            margin-left: 15cd00px;
+            }
+
+        .auth-links a {
             font-size: 14px;
+            font-weight: bold;
             color: black;
-            margin-right: 20px;
-        }
+            text-decoration: none;
+             
+            }
+
         h1 {
             font-size: 36px;
             color: #000;
-            margin-top: 150px;
+            margin-top: 250px;
         }
         .event-button {
             margin: 30px auto;
-            width: 300px;
+            width: 400px;
             height: 100px;
-            background-image: url('../imagens/apple.jpeg');
+            background-image: url('../imagens/nba\ \(1\).jpg');
             background-size: cover;
             background-position: center;
             color: #ff8080;
