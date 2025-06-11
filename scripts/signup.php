@@ -25,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindValue(':email', $email, SQLITE3_TEXT);
     $stmt->bindValue(':password', $hashed_password, SQLITE3_TEXT);
 
-   if ($stmt->execute()) {
+  if ($stmt->execute()) {
     echo "<script>alert('Registo realizado com sucesso!');</script>";
-    header("Location: login.html");
+    echo "<script>window.location.href = 'login.html';</script>";
     exit();
-    } else {
+    }else {
         echo "<script>alert('Erro ao registar usuário.'); window.history.back();</script>";
         exit();
     }
