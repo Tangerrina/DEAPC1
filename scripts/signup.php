@@ -1,40 +1,46 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $repeat_password = $_POST['repeat_password'];
+// signup.php
+ini_set('display_errors',1); error_reporting(E_ALL);   // mostre erros
 
-    // Se algum campo estiver vazio, exibe alerta e impede envio
-    if (empty($nome) || empty($email) || empty($password) || empty($repeat_password)) {
-        echo "<script>alert('Todos os campos devem ser preenchidos!'); window.history.back();</script>";
-        exit();
-    }
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: register.html'); exit();
+}
 
-    // Se as senhas não coincidirem, exibe alerta e impede envio
-    if ($password !== $repeat_password) {
-        echo "<script>alert('Credenciais inválidas! As senhas não coincidem.'); window.history.back();</script>";
-        exit();
-    }
+$nome           = trim($_POST['nome']  ?? '');
+$email          = trim($_POST['email'] ?? '');
+$password       = $_POST['password']       ?? '';
+$repeatPassword = $_POST['repeat_password']?? '';
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+// validações
+if ($nome === '' || $email === '' || $password === '' || $repeatPassword === '') {
+    echo "<script>alert('Todos os campos são obrigatórios!'); history.back();</script>";
+    exit;
+}
+if ($password !== $repeatPassword) {
+    echo "<script>alert('Credenciais inválidas! As senhas não coincidem.'); history.back();</script>";
+    exit;
+}
 
-    $db = new SQLite3('users.db');
-    $stmt = $db->prepare("INSERT INTO users (nome, email, password) VALUES (:nome, :email, :password)");
-    $stmt->bindValue(':nome', $nome, SQLITE3_TEXT);
-    $stmt->bindValue(':email', $email, SQLITE3_TEXT);
-    $stmt->bindValue(':password', $hashed_password, SQLITE3_TEXT);
+// grava
+try {
+    $db = new SQLite3(__DIR__ . '/scripts/users.db');   // ajuste o caminho
+    $db->exec('CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT, email TEXT UNIQUE, password TEXT
+    )');
 
-  if ($stmt->execute()) {
-    echo "<script>alert('Registo realizado com sucesso!');</script>";
-    echo "<script>window.location.href = 'login.html';</script>";
-    exit();
-    }else {
-        echo "<script>alert('Erro ao registar usuário.'); window.history.back();</script>";
-        exit();
-    }
-    
-    $db->close();
+    $stmt = $db->prepare('INSERT INTO users (nome,email,password) VALUES (?,?,?)');
+    $stmt->bindValue(1, $nome,  SQLITE3_TEXT);
+    $stmt->bindValue(2, $email, SQLITE3_TEXT);
+    $stmt->bindValue(3, password_hash($password, PASSWORD_DEFAULT), SQLITE3_TEXT);
+    $stmt->execute();
+
+    echo "<script>alert('Registo realizado com sucesso!'); window.location.href='login.html';</script>";
+    exit;
+
+} catch (Exception $e) {
+    // e.g. email duplicado
+    echo "<script>alert('Erro: {$e->getMessage()}'); history.back();</script>";
+    exit;
 }
 ?>
-
