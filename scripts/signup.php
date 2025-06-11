@@ -6,30 +6,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $repeat_password = $_POST['repeat_password'];
 
     if (empty($nome) || empty($email) || empty($password) || empty($repeat_password)) {
-        die("Todos os campos devem ser preenchidos.");
+        die("<script>alert('Todos os campos devem ser preenchidos.'); window.history.back();</script>");
     }
 
     if ($password !== $repeat_password) {
-        die("As senhas não coincidem.");
+        die("<script>alert('Credenciais inválidas! As senhas não coincidem.'); window.history.back();</script>");
     }
 
+    // Protege a senha antes de salvar
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+    // Conecta ao banco
     $db = new SQLite3('users.db');
-
-    $stmt = $db->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
+    $stmt = $db->prepare("INSERT INTO users (nome, email, password) VALUES (:nome, :email, :password)");
+    $stmt->bindValue(':nome', $nome, SQLITE3_TEXT);
     $stmt->bindValue(':email', $email, SQLITE3_TEXT);
     $stmt->bindValue(':password', $hashed_password, SQLITE3_TEXT);
 
-    $resultado = $stmt->execute();
-
-    if ($resultado) {
-        header("Location: login.html");
+    if ($stmt->execute()) {
+        echo "<script>alert('Registo realizado com sucesso!'); window.location.href='login.html';</script>";
         exit();
     } else {
-        echo "Erro ao registar usuário.";
+        echo "<script>alert('Erro ao registar usuário.'); window.history.back();</script>";
     }
 
     $db->close();
 }
 ?>
+

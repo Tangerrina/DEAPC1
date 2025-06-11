@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../styles/register.css">
-    <title>Registrar</title>
+    <title>Registar</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 <div class="register-container">
     <img src="../imagens/logo-final.jpeg" alt="Logo TiraBilhete" class="logo" />
     
-    <form method="POST" action="signup.php">
+    <form method="POST" action="login.html">
     <input type="text" name="nome" placeholder="Nome" required />
     <input type="email" name="email" placeholder="Email" required />
     <input type="password" name="password" placeholder="Password" required />
@@ -23,6 +23,18 @@
 
     </form>
 </div>
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    let password = document.querySelector("input[name='password']").value;
+    let repeatPassword = document.querySelector("input[name='repeat_password']").value;
+
+    if (password !== repeatPassword) {
+        event.preventDefault();
+        alert("Credenciais inválidas! As senhas não coincidem.");
+    }
+});
+</script>
+
 
 </body>
 </html>
