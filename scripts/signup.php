@@ -1,38 +1,35 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
+    $nome = $_POST['nome'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    
-    if (empty($username) || empty($email) || empty($password)) {
-        echo "Todos os campos são obrigatórios!";
-        exit;
+    $repeat_password = $_POST['repeat_password'];
+
+    if (empty($nome) || empty($email) || empty($password) || empty($repeat_password)) {
+        die("Todos os campos devem ser preenchidos.");
     }
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $db = new SQLite3('scripts/users.db');
-    $stmt = $db->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
-    $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+
+    if ($password !== $repeat_password) {
+        die("As senhas não coincidem.");
+    }
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $db = new SQLite3('users.db');
+
+    $stmt = $db->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
     $stmt->bindValue(':email', $email, SQLITE3_TEXT);
-    $stmt->bindValue(':password', $passwordHash, SQLITE3_TEXT);
-    
-    if ($stmt->execute()) {
-        echo "Utilizador registado com sucesso!";
+    $stmt->bindValue(':password', $hashed_password, SQLITE3_TEXT);
+
+    $resultado = $stmt->execute();
+
+    if ($resultado) {
+        header("Location: login.html");
+        exit();
     } else {
-        echo "Erro ao registar o utilizador!";
+        echo "Erro ao registar usuário.";
     }
+
     $db->close();
 }
 ?>
-
-<form method="POST">
-    <label for="username">Nome de utilizador:</label><br>
-    <input type="text" name="username" id="username"><br><br>
-
-    <label for="email">Email:</label><br>
-    <input type="email" name="email" id="email"><br><br>
-
-    <label for="password">Password:</label><br>
-    <input type="password" name="password" id="password"><br><br>
-
-    <button type="submit">Registar</button>
-</form>
