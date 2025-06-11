@@ -14,10 +14,12 @@
     <img src="../imagens/logo-final.jpeg" alt="Logo TiraBilhete" class="logo" />
     
     <form>
-        <input type="text" placeholder="Email" required />
-        <input type="email" placeholder="Password" required />
-        <input type="password" placeholder="Repeat Password" required />
-        <button type="submit">Register</button>
+        <form method="POST" action="processa_registro.php">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Registrar</button>
+    </form>
+
     </form>
 </div>
 
