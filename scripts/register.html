@@ -28,9 +28,16 @@ document.getElementById("registerForm").addEventListener("submit", function(even
     let password = document.querySelector("input[name='password']").value;
     let repeatPassword = document.querySelector("input[name='repeat_password']").value;
 
-    if (password !== repeatPassword) {
+    if (password.trim() === "" || repeatPassword.trim() === "") {
         event.preventDefault();
+        alert("Todos os campos devem ser preenchidos!");
+        return;
+    }
+
+    if (password !== repeatPassword) {
+        event.preventDefault(); // Bloqueia o envio do formulário
         alert("Credenciais inválidas! As senhas não coincidem.");
+        return;
     }
 });
 </script>

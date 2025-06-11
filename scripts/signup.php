@@ -6,17 +6,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $repeat_password = $_POST['repeat_password'];
 
     if (empty($nome) || empty($email) || empty($password) || empty($repeat_password)) {
-        die("<script>alert('Todos os campos devem ser preenchidos.'); window.history.back();</script>");
+        echo "<script>alert('Todos os campos devem ser preenchidos.'); window.history.back();</script>";
+        exit();
     }
 
     if ($password !== $repeat_password) {
-        die("<script>alert('Credenciais inválidas! As senhas não coincidem.'); window.history.back();</script>");
+        echo "<script>alert('Credenciais inválidas! As senhas não coincidem.'); window.history.back();</script>";
+        exit();
     }
 
-    // Protege a senha antes de salvar
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Conecta ao banco
     $db = new SQLite3('users.db');
     $stmt = $db->prepare("INSERT INTO users (nome, email, password) VALUES (:nome, :email, :password)");
     $stmt->bindValue(':nome', $nome, SQLITE3_TEXT);
