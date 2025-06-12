@@ -23,8 +23,8 @@ body {
 }
 
 .logo {
-    width: 120px;
-    margin-bottom: 30px;
+    max-width: 200px;
+    height: auto;
 }
 
 form {
