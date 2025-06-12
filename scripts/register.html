@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <link rel="stylesheet" href="../styles/register.css">
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Registar</title>
+  <link rel="stylesheet" href="../styles/register.css" />
 </head>
 <body>
-<form id="registerForm" action="login.html" method="POST">
-  <input type="text"  name="nome"            placeholder="Nome"      required>
-  <input type="email" name="email"           placeholder="Email"     required>
-  <input type="password" name="password"        placeholder="Password"  required>
-  <input type="password" name="repeat_password" placeholder="Repetir"   required>
-  <button type="submit">Registar</button>
-</form>
+
+<a href="Inicio.html" class="back-link">Início</a>
+
+<div class="register-container">
+  <img src="../imagens/logo-final.jpeg" alt="Logo" class="logo" />
+
+  <form id="registerForm">
+    <input type="text" name="nome" placeholder="Nome" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="password" name="repeat_password" placeholder="Repetir" required />
+    <button type="submit">Registar</button>
+  </form>
+</div>
 
 <script>
-document.getElementById('registerForm').addEventListener('submit', async e => {
-  e.preventDefault();                    // 1) trava o envio “normal”
+document.getElementById('registerForm').addEventListener('submit', e => {
+  e.preventDefault();
 
-  const f  = e.target;
-  const pw = f.password.value;
-  const pw2= f.repeat_password.value;
+  const form = e.target;
+  const nome = form.nome.value.trim();
+  const email = form.email.value.trim();
+  const pw = form.password.value;
+  const pw2 = form.repeat_password.value;
 
   if (pw !== pw2) {
-    alert('Credenciais inválidas! As senhas não coincidem.');
+    alert('As senhas não coincidem.');
     return;
   }
 
-  // 2) constrói o corpo a enviar para signup.php
-  const formData = new FormData(f);
+  // Simular "guardar utilizador"
+  localStorage.setItem('userEmail', email);
+  localStorage.setItem('userPassword', pw);
+  localStorage.setItem('userNome', nome);
 
-  try {
-    const r = await fetch('signup.php', {
-      method: 'POST',
-      body:   formData
-    });
-    const txt = await r.text();          // resposta vinda do PHP
-
-    if (!r.ok) throw new Error('Falha no servidor');
-    if (txt.includes('OK_REGISTO')) {    // nossa “senha” de sucesso
-      window.location.href = 'login.html';
-    } else {
-      alert(txt);                        // mostra erro vindo do PHP
-    }
-  } catch (err) {
-    alert('Erro: ' + err.message);
-  }
+  alert('Registo concluído!');
+  window.location.href = 'login.html';
 });
 </script>
+
 </body>
 </html>
+

@@ -1,28 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TiraBilhete - Login</title>
-    <link rel="stylesheet" href="../styles/login.css">
-
+  <meta charset="UTF-8" />
+  <title>TiraBilhete - Login</title>
+  <link rel="stylesheet" href="../styles/login.css" />
 </head>
 <body>
 
 <a href="Inicio.html" class="back-link">Início</a>
 
 <div class="login-container">
-    <img src="../imagens/logo-final.jpeg" alt="Logo TiraBilhete" class="logo">
-    
-    
-    <form>
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
+  <img src="../imagens/logo-final.jpeg" alt="Logo TiraBilhete" class="logo" />
+
+  <form id="loginForm">
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
 </div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+
+  const form = e.target;
+  const email = form.email.value.trim();
+  const password = form.password.value;
+
+  const storedEmail = localStorage.getItem('userEmail');
+  const storedPassword = localStorage.getItem('userPassword');
+
+  if (email === storedEmail && password === storedPassword) {
+    alert('Login efetuado com sucesso!');
+    // Aqui podes redirecionar para uma área privada
+    window.location.href = 'Inicio.html';
+  } else {
+    alert('Email ou palavra-passe incorretos.');
+  }
+});
+</script>
 
 </body>
 </html>
-<style>
