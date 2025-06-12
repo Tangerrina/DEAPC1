@@ -1,46 +1,42 @@
 <?php
-// signup.php
-ini_set('display_errors',1); error_reporting(E_ALL);   // mostre erros
+/* devolve texto simples que o JavaScript vai ler               */
+/* NÃO emite <script> nem header('Location')                    */
+ini_set('display_errors',1); error_reporting(E_ALL);
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: register.html'); exit();
+    http_response_code(405);
+    exit('Método não permitido');
 }
 
-$nome           = trim($_POST['nome']  ?? '');
-$email          = trim($_POST['email'] ?? '');
-$password       = $_POST['password']       ?? '';
-$repeatPassword = $_POST['repeat_password']?? '';
+$nome  = trim($_POST['nome']  ?? '');
+$email = trim($_POST['email'] ?? '');
+$pw1   = $_POST['password'] ?? '';
+$pw2   = $_POST['repeat_password'] ?? '';
 
-// validações
-if ($nome === '' || $email === '' || $password === '' || $repeatPassword === '') {
-    echo "<script>alert('Todos os campos são obrigatórios!'); history.back();</script>";
-    exit;
+if ($nome==='' || $email==='' || $pw1==='' || $pw2==='') {
+    exit('Todos os campos são obrigatórios!');
 }
-if ($password !== $repeatPassword) {
-    echo "<script>alert('Credenciais inválidas! As senhas não coincidem.'); history.back();</script>";
-    exit;
+if ($pw1 !== $pw2) {
+    exit('Credenciais inválidas! As senhas não coincidem.');
 }
 
-// grava
 try {
-    $db = new SQLite3(__DIR__ . '/scripts/users.db');   // ajuste o caminho
-    $db->exec('CREATE TABLE IF NOT EXISTS users (
+    $db = new SQLite3(__DIR__.'/scripts/users.db');
+    $db->exec('CREATE TABLE IF NOT EXISTS users(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT, email TEXT UNIQUE, password TEXT
-    )');
+        nome TEXT, email TEXT UNIQUE, password TEXT )');
 
-    $stmt = $db->prepare('INSERT INTO users (nome,email,password) VALUES (?,?,?)');
-    $stmt->bindValue(1, $nome,  SQLITE3_TEXT);
-    $stmt->bindValue(2, $email, SQLITE3_TEXT);
-    $stmt->bindValue(3, password_hash($password, PASSWORD_DEFAULT), SQLITE3_TEXT);
+    $stmt = $db->prepare(
+        'INSERT INTO users (nome,email,password) VALUES (?,?,?)'
+    );
+    $stmt->bindValue(1,$nome,  SQLITE3_TEXT);
+    $stmt->bindValue(2,$email, SQLITE3_TEXT);
+    $stmt->bindValue(3,password_hash($pw1,PASSWORD_DEFAULT),SQLITE3_TEXT);
     $stmt->execute();
 
-    echo "<script>alert('Registo realizado com sucesso!'); window.location.href='login.html';</script>";
-    exit;
-
-} catch (Exception $e) {
-    // e.g. email duplicado
-    echo "<script>alert('Erro: {$e->getMessage()}'); history.back();</script>";
-    exit;
+    /* “palavra-chave” para o JS identificar sucesso */
+    exit('OK_REGISTO');
 }
-?>
+catch (Exception $e) {
+    exit('Erro: '.$e->getMessage());
+}
