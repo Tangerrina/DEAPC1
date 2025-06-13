@@ -1,11 +1,81 @@
 body {
     background-color: #fffdf2;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 30px 0 30px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff8080;
+    margin-left: 10px;
+}
+
+.header-links a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #181028;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.header-links a:hover {
+    text-decoration: underline;
+}
+
+.header-line {
+    border: none;
+    border-bottom: 5px solid #ec6f1a;
+    margin: 0 0 20px 0;
+}
+
+.login-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 350px;
+    margin: 40px auto;
+    padding: 30px 30px 20px 30px;
+    text-align: center;
+}
+
+.login-container .logo {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.login-container input, .login-container button {
+    width: 90%;
+    margin: 8px 0;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-container button {
+    background: #ffa500;
+    color: #181028;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background: #ff8c00;
 }
 
 .back-link {
