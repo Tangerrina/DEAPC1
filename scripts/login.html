@@ -20,25 +20,36 @@
 </div>
 
 <script>
-document.getElementById('loginForm').addEventListener('submit', e => {
+document.getElementById('loginForm').addEventListener('submit', async e => {
   e.preventDefault();
 
   const form = e.target;
-  const email = form.email.value.trim();
-  const password = form.password.value;
+  const formData = new FormData(form);
 
-  const storedEmail = localStorage.getItem('userEmail');
-  const storedPassword = localStorage.getItem('userPassword');
+  try {
+    const response = await fetch('login.php', {
+      method: 'POST',
+      body: formData
+    });
 
-  if (email === storedEmail && password === storedPassword) {
-    alert('Login efetuado com sucesso!');
-    // Aqui podes redirecionar para uma área privada
-    window.location.href = 'Inicio.html';
-  } else {
-    alert('Email ou palavra-passe incorretos.');
+    const text = await response.text();
+
+    if (text.includes('Utilizador não registado')) {
+      alert('Utilizador não registado.');
+    } else if (text.includes('Password errada')) {
+      alert('Password errada.');
+    } else if (text.trim() === 'OK') {
+      window.location.href = 'Inicio.php';
+    } else {
+      alert(text);
+    }
+  } catch (error) {
+    alert('Erro ao tentar fazer login.');
+    console.error(error);
   }
 });
 </script>
 
 </body>
 </html>
+
