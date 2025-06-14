@@ -4,6 +4,33 @@
     <meta charset="UTF-8">
     <title>Bilheteira</title>
     <link rel="stylesheet" href="../styles/comprar.css" />
+    <script>
+    function atualizarPreco(select, precoBase, idPreco) {
+        const quantidade = parseInt(select.value);
+        const precoTotal = (precoBase * quantidade).toFixed(2).replace('.', ',');
+        document.getElementById(idPreco).innerText = `Preço: ${precoTotal}€`;
+    }
+    window.onload = function() {
+        document.getElementById('basquetebol-qty').addEventListener('change', function() {
+            atualizarPreco(this, 99.99, 'preco-basquetebol');
+        });
+        document.getElementById('futebol-qty').addEventListener('change', function() {
+            atualizarPreco(this, 69.99, 'preco-futebol');
+        });
+        document.getElementById('cinema-qty').addEventListener('change', function() {
+            atualizarPreco(this, 9.99, 'preco-cinema');
+        });
+        document.getElementById('concertos-qty').addEventListener('change', function() {
+            atualizarPreco(this, 89.99, 'preco-concertos');
+        });
+
+        document.querySelectorAll('button').forEach(function(botao) {
+            botao.addEventListener('click', function() {
+                window.location.href = 'compraConcluida.html';
+            });
+        });
+    }
+    </script>
 </head>
 <body>
 
@@ -21,10 +48,10 @@
 <h1>Bilheteira de Eventos</h1>
 <div class="container">
     <div class="card">
-        <h2>Basket</h2>
-        <p>Preço: 30€</p>
-        <label for="basket-qty">Quantidade:</label>
-        <select id="basket-qty">
+        <h2>NBA Finals<br>Indiana Pacers - OKC<br>Game 6 - 1:30</h2>
+        <p id="preco-basquetebol">Preço: 99,99€</p>
+        <label for="basquetebol-qty">Quantidade:</label>
+        <select id="basquetebol-qty">
             <option value='1'>1</option>
             <option value='2'>2</option>
             <option value='3'>3</option>
@@ -39,8 +66,8 @@
         <button>Comprar</button>
     </div>
     <div class="card">
-        <h2>Futebol</h2>
-        <p>Preço: 30€</p>
+        <h2>Champions League Final<br>PSG - Inter<br>Munich - 20:00</h2>
+        <p id="preco-futebol">Preço: 69,99€</p>
         <label for="futebol-qty">Quantidade:</label>
         <select id="futebol-qty">
             <option value='1'>1</option>
@@ -57,10 +84,10 @@
         <button>Comprar</button>
     </div>
     <div class="card">
-        <h2>Voleibol</h2>
-        <p>Preço: 30€</p>
-        <label for="voleibol-qty">Quantidade:</label>
-        <select id="voleibol-qty">
+        <h2>Cinema NOS<br>Missão: Impossível - O Ajuste de Contas Final</h2>
+        <p id="preco-cinema">Preço: 9,99€</p>
+        <label for="cinema-qty">Quantidade:</label>
+        <select id="cinema-qty">
             <option value='1'>1</option>
             <option value='2'>2</option>
             <option value='3'>3</option>
@@ -75,10 +102,10 @@
         <button>Comprar</button>
     </div>
     <div class="card">
-        <h2>Andebol</h2>
-        <p>Preço: 30€</p>
-        <label for="andebol-qty">Quantidade:</label>
-        <select id="andebol-qty">
+        <h2>GRAND NATIONAL TOUR - KENDRICK LAMAR AND SZA<br>19:00 27 Julho - Estádio do Restelo (Lisboa)</h2>
+        <p id="preco-concertos">Preço: 89,99€</p>
+        <label for="concertos-qty">Quantidade:</label>
+        <select id="concertos-qty">
             <option value='1'>1</option>
             <option value='2'>2</option>
             <option value='3'>3</option>
@@ -95,4 +122,3 @@
 </div>
 </body>
 </html>
-

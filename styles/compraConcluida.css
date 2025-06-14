@@ -1,0 +1,96 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fffdf2;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+header {
+  background-color: white;
+  padding: 10px 20px;
+  border-bottom: 5px solid #ec6f1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+header img {
+  height: 60px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff8080;
+  margin-left: 10px;
+}
+.auth-links {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+.brand {
+  color: #f47c1c;
+  font-size: 2rem;
+}
+
+.inicio {
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+
+.inicio:hover {
+  text-decoration: underline;
+}
+
+.bar {
+  height: 10px;
+  background-color: #f47c1c;
+}
+
+main {
+  margin-top: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.checkmark-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.circle {
+  background-color: #fbb429;
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  font-size: 4rem;
+  color: #fff;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
