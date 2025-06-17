@@ -1,34 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <title>TiraBilhete - Registo</title>
-  <link rel="stylesheet" href="../styles/login.css" />
+    <meta charset="UTF-8">
+    <title>Registo de Utilizador</title>
+    <link rel="stylesheet" href="styles/register.css">
 </head>
 <body>
-
-<header>
-  <div class="logo-container">
-    <img src="../imagens/logo-final.jpeg" alt="TiraBilhete" style="height:40px;">
-    <div class="logo-text">TiraBilhete</div>
-  </div>
-  <nav class="header-links">
-    <a href="Inicio.php">Início</a>
-  </nav>
-</header>
-<hr class="header-line">
-
-<div class="login-container">
-  <img src="../imagens/logo-final.jpeg" alt="Logo TiraBilhete" class="logo" />
-
-  <form action="signup.php" method="POST" id="registerForm">
-    <input type="text" name="nome" placeholder="Nome" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="password" name="password" placeholder="Password" required />
-    <input type="password" name="repeat_password" placeholder="Repetir Password" required />
-    <button type="submit">Registar</button>
-  </form>
-</div>
-
+    <h2>Registo</h2>
+    <form action="register.php" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+        <button type="submit">Registar</button>
+    </form>
 </body>
 </html>
