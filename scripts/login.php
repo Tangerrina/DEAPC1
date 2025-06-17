@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     
-    $db = new SQLite3(__DIR__ . "/../users.db");
+    $db = new SQLite3(__DIR__ . '/../users.db');
 
     $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->bindValue(":email", $email, SQLITE3_TEXT);
