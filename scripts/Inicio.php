@@ -26,7 +26,14 @@
 
 <h1>VEJA AQUI OS NOSSOS EVENTOS DISPONÍVEIS!</h1>
 
-<a href="Comprar.html" class="event-button">EVENTOS</a>
+<?php if (isset($_SESSION["user_id"])): ?>
+    <a href="Comprar.php" class="event-button">EVENTOS</a>
+<?php else: ?>
+    <span class="event-button event-button-disabled">EVENTOS</span>
+    <div style="margin-top:20px; color:#ec6f1a; font-size:22px; font-weight:bold;">
+        Faz login para ter acesso
+    </div>
+<?php endif; ?>
 
 </body>
 </html>
