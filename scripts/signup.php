@@ -1,5 +1,8 @@
 <?php
-$db = new SQLite3('users.db');
+session_start();
+
+// Caminho absoluto para a base de dados principal
+$db = new SQLite3(__DIR__ . '/../users.db');
 
 // Cria a tabela se não existir
 $db->exec("CREATE TABLE IF NOT EXISTS users (
@@ -14,14 +17,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+    // Verifica se já existe utilizador com este email
+    $stmt = $db->prepare("SELECT id FROM users WHERE email = :email");
+    $stmt->bindValue(':email', $email, SQLITE3_TEXT);
+    $result = $stmt->execute();
+    if ($result->fetchArray()) {
+        echo "Email já registado.";
+        exit;
+    }
+
+    // Insere novo utilizador
     $stmt = $db->prepare("INSERT INTO users (nome, email, password) VALUES (:nome, :email, :password)");
     $stmt->bindValue(':nome', $nome, SQLITE3_TEXT);
     $stmt->bindValue(':email', $email, SQLITE3_TEXT);
     $stmt->bindValue(':password', $password, SQLITE3_TEXT);
 
     if ($stmt->execute()) {
-        echo "Registo efetuado com sucesso!<br>";
-        echo '<a href="list_users.php">Ver utilizadores</a>';
+        // Login automático
+        $_SESSION["user_id"] = $db->lastInsertRowID();
+        $_SESSION["nome"] = $nome;
+        header("Location: Inicio.php");
+        exit();
     } else {
         echo "Erro ao registar utilizador.";
     }
