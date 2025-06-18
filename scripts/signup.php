@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("As passwords não coincidem.");
     }
 
-    // Caminho absoluto para a base de dados principal
     $db = new SQLite3(__DIR__ . "/../users.db");
 
     $db->exec("CREATE TABLE IF NOT EXISTS users (
