@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $repeat_password = $_POST["repeat_password"];
 
-<<<<<<< HEAD
     if (empty($nome) || empty($email) || empty($password) || empty($repeat_password)) {
         die("Todos os campos são obrigatórios.");
     }
@@ -25,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("As passwords não coincidem.");
     }
 
-    $db = new SQLite3("users.db");
     // Caminho absoluto para a base de dados principal
     $db = new SQLite3(__DIR__ . "/../users.db");
 
@@ -38,44 +36,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->bindValue(":email", $email, SQLITE3_TEXT);
-=======
-
-    $stmt = $db->prepare("SELECT id FROM users WHERE email = :email");
-    $stmt->bindValue(':email', $email, SQLITE3_TEXT);
->>>>>>> b36285376d8001699ebfa7ed2619454c2d7346e9
     $result = $stmt->execute();
 
     if ($result->fetchArray()) {
         die("Email já registado.");
     }
 
-<<<<<<< HEAD
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-=======
->>>>>>> b36285376d8001699ebfa7ed2619454c2d7346e9
     $stmt = $db->prepare("INSERT INTO users (nome, email, password) VALUES (:nome, :email, :password)");
     $stmt->bindValue(":nome", $nome, SQLITE3_TEXT);
     $stmt->bindValue(":email", $email, SQLITE3_TEXT);
     $stmt->bindValue(":password", $hashed_password, SQLITE3_TEXT);
     $stmt->execute();
 
-<<<<<<< HEAD
     $_SESSION["user_id"] = $db->lastInsertRowID();
     $_SESSION["nome"] = $nome;
 
     header("Location: Inicio.php");
     exit();
-=======
-    if ($stmt->execute()) {
-
-        $_SESSION["user_id"] = $db->lastInsertRowID();
-        $_SESSION["nome"] = $nome;
-        header("Location: Inicio.php");
-        exit();
-    } else {
-        echo "Erro ao registar utilizador.";
-    }
->>>>>>> b36285376d8001699ebfa7ed2619454c2d7346e9
 }
 ?>

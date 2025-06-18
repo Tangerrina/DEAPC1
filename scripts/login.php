@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Email e password são obrigatórios.");
     }
 
-    $db = new SQLite3("users.db");
     // Caminho absoluto para a base de dados principal
     $db = new SQLite3(__DIR__ . "/../users.db");
 
