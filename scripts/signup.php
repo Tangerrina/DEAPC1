@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $db->prepare("INSERT INTO users (nome, email, password) VALUES (:nome, :email, :password)");
+    $stmt = $db->prepare("INSERT OR IGNORE INTO users (nome, email, password) VALUES (:nome, :email, :password)");
     $stmt->bindValue(":nome", $nome, SQLITE3_TEXT);
     $stmt->bindValue(":email", $email, SQLITE3_TEXT);
     $stmt->bindValue(":password", $hashed_password, SQLITE3_TEXT);

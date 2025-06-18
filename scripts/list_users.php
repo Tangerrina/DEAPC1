@@ -1,5 +1,5 @@
 <?php
-$db = new SQLite3('users.db');
+$db = new SQLite3(__DIR__ . '/../users.db');
 $result = $db->query("SELECT id, nome, email FROM users");
 
 echo "<h2>Lista de Utilizadores</h2>";
