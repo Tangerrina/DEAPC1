@@ -1,3 +1,9 @@
+body {
+    background: #fefcf2;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
 header {
     background: #fff;
     border-bottom: 5px solid #ec6f1a;
@@ -49,17 +55,18 @@ header {
     align-items: center;
 }
 
-.register-box img {
+.register-logo {
     width: 100px;
     margin-bottom: 18px;
+    display: block;
 }
 
 .register-box input {
     width: 100%;
     padding: 14px 12px;
     margin-bottom: 18px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid #333;
+    border-radius: 25px;
     font-size: 18px;
     background: #fff;
     color: #333;
@@ -68,14 +75,14 @@ header {
 }
 
 .register-box button {
-    width: 100%;
+    width: 60%;
     padding: 14px 0;
     background-color: #ec6f1a;
     color: white;
     font-size: 20px;
     font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 8px;
